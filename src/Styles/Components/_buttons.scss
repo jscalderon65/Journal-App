@@ -1,0 +1,53 @@
+.btn{
+    background-color: transparent;
+    border:none;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+    padding:7px 10px 7px 10px;
+    &:focus{
+        outline:none;
+    }
+}
+.btn-primary{
+    background-color: $secondary;
+    border-radius: 2px;
+    transition: background-color 0.5s;
+    &:disabled{
+        background-color: lighten($color:$primary,$amount:15);
+    }
+    &:hover{
+        background-color:$primary;
+    }
+}
+.btn-secondary{
+    background-color: $light-grey;
+    border-radius: 2px;
+    transition: background-color 0.5s;
+    &:hover{
+        background-color: $dark-grey;
+    }
+}
+.close-button-container{
+    text-align: right;
+}
+.close-button{
+    border:none;
+    width:auto;
+    background-color: transparent;
+    color:white;
+    cursor:pointer;
+    font-size:20px;
+    padding:7px 10px 7px 10px;
+    &:focus{
+        outline:none;
+    }
+}
+.btn-block{
+    width: 100%;
+}
+.google-button{
+    &:focus{
+        outline:none;
+    }
+}
