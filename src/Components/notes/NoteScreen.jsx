@@ -1,6 +1,7 @@
 import React from "react";
 import NotesAppBar from "./NotesAppBar";
-
+import {Image} from "antd"
+import 'antd/dist/antd.css';
 const NoteScreen = () => {
   return (
     <div className="notes__main-content animate__animated animate__fadeInRight">
@@ -11,7 +12,7 @@ const NoteScreen = () => {
           placeholder="What happened today?"
           className="notes__text-area"
         ></textarea>
-        <img  width="100px" height="100px" src="https://picsum.photos/seed/picsum/200/300" alt="image1"/>
+        <Image  width="100px" height="100px" src="https://picsum.photos/seed/picsum/200/300" alt="image1"/>
       </div>
     </div>
   );

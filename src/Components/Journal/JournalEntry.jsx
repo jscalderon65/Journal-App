@@ -1,4 +1,5 @@
 import React from "react";
+import 'antd/dist/antd.css';
 import { useMediaQuery } from "my-customhook-collection";
 const JournalEntry = () => {
   const mediaQuery = useMediaQuery("(max-width: 1000px)");

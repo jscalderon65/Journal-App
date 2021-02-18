@@ -1,64 +1,83 @@
-.btn{
+.btn {
     background-color: transparent;
-    border:none;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
-    padding:7px 10px 7px 10px;
-    &:focus{
-        outline:none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 7px 10px 7px 10px;
+
+    &:focus {
+        outline: none;
     }
 }
-.btn-primary{
+
+.btn-primary {
     background-color: $secondary;
     border-radius: 2px;
     transition: background-color 0.5s;
-    &:disabled{
-        background-color: lighten($color:$primary,$amount:15);
+
+    &:disabled {
+        background-color: lighten($color:$primary, $amount:15);
     }
-    &:hover{
-        background-color:$primary;
+
+    &:hover {
+        background-color: $primary;
     }
 }
-.btn-secondary{
+
+.btn-secondary {
+    display: flex;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border: solid;
     background-color: $light-grey;
-    border-radius: 2px;
+    border-radius: 10px;
     transition: background-color 0.5s;
-    &:hover{
+
+    &:hover {
         background-color: $dark-grey;
     }
 }
-.btn-options{
+
+.btn-options {
     background-color: $primary;
     border-radius: 2px;
     transition: background-color 0.5s;
-    &:hover{
+
+    &:hover {
         background-color: $secondary;
     }
 }
-.close-button-container{
+
+.close-button-container {
     text-align: right;
 }
-.close-button{
-    border:none;
-    width:auto;
+
+.close-button {
+    border: none;
+    width: auto;
     background-color: transparent;
-    color:white;
-    cursor:pointer;
-    font-size:20px;
-    padding:7px 10px 7px 10px;
-    &:focus{
-        outline:none;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 7px 10px 7px 10px;
+
+    &:focus {
+        outline: none;
     }
+
     &:hover {
         color: darken($color: white, $amount:20);
     }
 }
-.btn-block{
+
+.btn-block {
     width: 100%;
 }
-.google-button{
-    &:focus{
-        outline:none;
+
+.google-button {
+    &:focus {
+        outline: none;
     }
 }

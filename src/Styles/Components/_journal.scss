@@ -40,11 +40,20 @@
     align-items:center;
 }
 .journal__entries {
-    overflow-y: scroll;
     padding: 20px;
+    overflow-y: scroll;
+    overflow-x:hidden;
     flex: 1;
     margin-top: 30px;
     margin-bottom: 30px;
+}
+@media(max-width:600px){
+    .journal__entries {
+        padding: 10px;
+    } 
+    .journal__sidebar {
+        width: 50vw;
+    }
 }
 .journal__entries::-webkit-scrollbar {
     -webkit-appearance:caret;
@@ -151,17 +160,12 @@
 .journal_navbar {
     background: $dark-grey;
     padding: 20px;
+    height:20vh;
+    display: flex;
+    align-items: center;
 }
 
-.menu-button {
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    border: solid;
-}
 
 .menu-button-items {
-    font-size: 30px;
+    font-size:26px;
 }
