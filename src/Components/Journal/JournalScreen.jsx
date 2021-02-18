@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "../../Styles/styles.scss";
 import SideBar from "./SideBar";
 import Navbar from "./Navbar";
-import NothingSelected from './NothingSelected'
+import NothingSelected from "./NothingSelected";
+import NoteScreen from "../notes/NoteScreen";
 const JournalScreen = () => {
   const [sideBar, setSideBar] = useState(true);
   const OpenMenu = () => setSideBar(!sideBar);
@@ -18,8 +19,13 @@ const JournalScreen = () => {
         <Navbar OpenMenu={OpenMenu} />
       )}
       <main className="journal__main">
-        <NothingSelected />
+        
+        {/*         <NothingSelected /> */}
+
+         <NoteScreen />    
+      
       </main>
+    
     </div>
   );
 };

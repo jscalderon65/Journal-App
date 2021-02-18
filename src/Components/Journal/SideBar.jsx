@@ -6,8 +6,8 @@ const SideBar = ({ setSideBar }) => {
   return (
     <aside className="animate__animated animate__fadeInLeft journal__sidebar">
       <div className="close-button-container">
-        <button className="close-button" onClick={onCloseSideBar}>
-          X
+        <button className="close-button mt-1" onClick={onCloseSideBar}>
+        <i className="fas fa-times"></i>
         </button>
       </div>
       <div className="journal__new-entry">
