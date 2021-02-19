@@ -1,18 +1,35 @@
 import React, { useState } from "react";
 import GoogleButton from "react-google-button";
 import { Link } from "react-router-dom";
-const LoginScreen = () => {
+import { useForm } from "my-customhook-collection";
+import { connect } from "react-redux";
+import "antd/dist/antd.css";
+const LoginScreen = ({nameaux}) => {
+  const [{ email, password }, onInputChange] = useForm({
+    email: "",
+    password: "",
+  });
+  const handleLogin = (e) => {
+    e.preventDefault();
+  };
   const [passwordInput, setPasswordInput] = useState(false);
   return (
     <>
-      <h3 className="auth__title text-center">Login</h3>
-      <form>
+      <h3 className="auth__title text-center animate__animated animate__fadeIn">
+        Login
+      </h3>
+      <form
+        className="animate__animated animate__fadeIn"
+        onSubmit={handleLogin}
+      >
         <input
           className="auth__input"
           type="email"
           placeholder="email"
           name="email"
           autoComplete="off"
+          value={email}
+          onChange={onInputChange}
         />
 
         <div style={{ display: "flex", height: "30px" }}>
@@ -22,8 +39,14 @@ const LoginScreen = () => {
             placeholder="password"
             name="password"
             autoComplete="off"
+            value={password}
+            onChange={onInputChange}
           />
           <div
+            style={{
+              fontSize: "12px",
+              width: "50px",
+            }}
             onClick={() => setPasswordInput(!passwordInput)}
             className="btn btn-primary"
           >
@@ -50,5 +73,6 @@ const LoginScreen = () => {
     </>
   );
 };
-
-export default LoginScreen;
+const mapStateToProps = (state) => ({});
+const mapDispatchToProps = (dispatch) => ({});
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

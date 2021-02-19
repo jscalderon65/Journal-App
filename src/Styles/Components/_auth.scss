@@ -8,6 +8,10 @@
 }
 
 .auth__box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: white;
     box-shadow: 0px 3px $dark-grey;
     border-radius: 5px;
@@ -15,10 +19,12 @@
     padding-right: 20px;
     padding-top: 40px;
     padding-bottom: 40px;
-    width: 250px;
+    width: 300px;
+    height: 400px;
 }
 
 .auth__title {
+    font-size:20px;
     color: darken($color: $primary, $amount:20);
 }
 
@@ -33,7 +39,7 @@
     transition: border-bottom 0.3s ease;
 
     &:focus {
-        border-bottom: 1px solid $primary;
+        border-bottom: 2px solid $secondary;
         outline: none;
     }
 }

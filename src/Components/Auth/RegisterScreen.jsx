@@ -4,8 +4,8 @@ const RegisterScreen = () => {
   const [passwordInput, setPasswordInput] = useState(false);
   return (
     <>
-      <h3 className="auth__title text-center">Register</h3>
-      <form>
+      <h3 className="auth__title text-center animate__animated animate__fadeIn">Register</h3>
+      <form className="animate__animated animate__fadeIn">
         <input
           className="auth__input"
           type="email"
@@ -23,6 +23,10 @@ const RegisterScreen = () => {
             autoComplete="off"
           />
           <div
+            style={{
+              fontSize: "12px",
+              width: "50px",
+            }}
             onClick={() => setPasswordInput(!passwordInput)}
             className="btn btn-primary"
           >
