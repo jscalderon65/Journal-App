@@ -163,8 +163,24 @@
     height:20vh;
     display: flex;
     align-items: center;
-}
+    justify-content: space-between;
+    flex-wrap: wrap;
 
+
+}
+.journal__navbar-user-profile{
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    width: 80%;
+}
+.journal__navbar-user-profile>h2{
+
+    color: white;
+    text-align:right;
+}
 
 .menu-button-items {
     font-size:26px;

@@ -1,6 +1,5 @@
 import React from "react";
 import JournalEntries from "./JournalEntries";
-
 const SideBar = ({ setSideBar }) => {
   const onCloseSideBar = () => setSideBar((item) => !item);
   return (

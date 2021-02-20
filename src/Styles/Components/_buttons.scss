@@ -81,3 +81,18 @@
         outline: none;
     }
 }
+
+
+.btn-warning {
+    background-color: #e5383b;
+    border-radius: 2px;
+    transition: background-color 0.5s;
+
+    &:disabled {
+        background-color: lighten($color:#a4161a, $amount:15);
+    }
+
+    &:hover {
+        background-color: #a4161a;
+    }
+}

@@ -4,13 +4,17 @@ import { Link } from "react-router-dom";
 import { useForm } from "my-customhook-collection";
 import { connect } from "react-redux";
 import "antd/dist/antd.css";
-const LoginScreen = ({nameaux}) => {
+import { GoogleAuth } from "../../Redux/Actions/auth";
+const LoginScreen = ({ GoogleAuth,user }) => {
   const [{ email, password }, onInputChange] = useForm({
     email: "",
     password: "",
   });
   const handleLogin = (e) => {
     e.preventDefault();
+  };
+  const handleGoogleLogin = () => {
+    GoogleAuth();
   };
   const [passwordInput, setPasswordInput] = useState(false);
   return (
@@ -58,6 +62,7 @@ const LoginScreen = ({nameaux}) => {
           Login
         </button>
         <GoogleButton
+          onClick={handleGoogleLogin}
           className="mb-1 google-button"
           style={{ width: "100%" }}
         />
@@ -70,9 +75,16 @@ const LoginScreen = ({nameaux}) => {
           Create account
         </Link>
       </form>
+      {JSON.stringify(user)}
     </>
   );
 };
-const mapStateToProps = (state) => ({});
-const mapDispatchToProps = (dispatch) => ({});
+const mapStateToProps = (state) => ({
+  user:state
+});
+const mapDispatchToProps = (dispatch) => ({
+  GoogleAuth(){
+    dispatch(GoogleAuth);
+  }
+});
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

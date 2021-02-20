@@ -20,9 +20,9 @@ const JournalScreen = () => {
       )}
       <main className="journal__main">
         
-        {/*         <NothingSelected /> */}
+                <NothingSelected />
 
-         <NoteScreen />    
+        {/*  <NoteScreen />   */}  
       
       </main>
     
