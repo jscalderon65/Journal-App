@@ -4,14 +4,15 @@ import { Link } from "react-router-dom";
 import { useForm } from "my-customhook-collection";
 import { connect } from "react-redux";
 import "antd/dist/antd.css";
-import { GoogleAuth } from "../../Redux/Actions/auth";
-const LoginScreen = ({ GoogleAuth,user }) => {
+import { GoogleAuth,LoginEmailPassword } from "../../Redux/Actions/auth";
+const LoginScreen = ({LoginEmailPassword, GoogleAuth, user,  isLoading}) => {
   const [{ email, password }, onInputChange] = useForm({
     email: "",
     password: "",
   });
   const handleLogin = (e) => {
     e.preventDefault();
+    LoginEmailPassword(email,password)
   };
   const handleGoogleLogin = () => {
     GoogleAuth();
@@ -34,6 +35,7 @@ const LoginScreen = ({ GoogleAuth,user }) => {
           autoComplete="off"
           value={email}
           onChange={onInputChange}
+          required
         />
 
         <div style={{ display: "flex", height: "30px" }}>
@@ -45,6 +47,7 @@ const LoginScreen = ({ GoogleAuth,user }) => {
             autoComplete="off"
             value={password}
             onChange={onInputChange}
+            required
           />
           <div
             style={{
@@ -58,7 +61,9 @@ const LoginScreen = ({ GoogleAuth,user }) => {
           </div>
         </div>
 
-        <button className="mt-1 mb-1 btn btn-primary btn-block" type="submit">
+        <button className="mt-1 mb-1 btn btn-primary btn-block" type="submit"
+        disabled={isLoading}
+        >
           Login
         </button>
         <GoogleButton
@@ -75,14 +80,18 @@ const LoginScreen = ({ GoogleAuth,user }) => {
           Create account
         </Link>
       </form>
-      {JSON.stringify(user)}
+{/*       {JSON.stringify(user)} */}
     </>
   );
 };
 const mapStateToProps = (state) => ({
-  user:state
+  user:state,
+  isLoading:state.ui.loading,
 });
 const mapDispatchToProps = (dispatch) => ({
+  LoginEmailPassword(email,password){
+    dispatch(LoginEmailPassword(email,password));
+  },
   GoogleAuth(){
     dispatch(GoogleAuth);
   }

@@ -1,12 +1,19 @@
 import React from "react";
-import { useFirebaseUser } from "my-customhook-collection";
-import { firebase } from "../../Firebase/FirebaseConfig";
+import { Popconfirm } from "antd";
+import { FirebaseLogOut } from "../../Redux/Actions/auth";
+import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = ({ OpenMenu }) => {
-  const [UserInfo] = useFirebaseUser(firebase);
+  const dispatch = useDispatch();
+  const {
+    auth: { name },
+  } = useSelector((state) => state);
+  const handleLogout = () => {
+    dispatch(FirebaseLogOut());
+  };
   const HourIcon = () => {
     let date = new Date();
-    return date.getHours >= 17 ? (
+    return date.getHours() >= 17 ? (
       <i className="fas fa-moon"></i>
     ) : (
       <i className="fas fa-sun"></i>
@@ -18,12 +25,19 @@ const Navbar = ({ OpenMenu }) => {
         <p className="menu-button-items">☰</p>
       </div>
 
-      {UserInfo && (
+      {name && (
         <div className="journal__navbar-user-profile">
           <h2>
-            {UserInfo.displayName} <HourIcon />
+            {name} <HourIcon />
           </h2>
-          <button className="btn btn-warning">Logout</button>
+          <Popconfirm
+            title="Do you want to log out?"
+            onConfirm={handleLogout}
+            okText="Yes"
+            cancelText="No"
+          >
+            <button className="btn btn-warning">Logout</button>
+          </Popconfirm>
         </div>
       )}
     </div>

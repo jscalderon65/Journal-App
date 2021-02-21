@@ -1,19 +1,55 @@
-import React from 'react'
-import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
-import JournalScreen from '../Journal/JournalScreen';
-import AuthRouter from './AuthRouter'
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../../Redux/Actions/auth";
+import { useFirebaseUser } from "my-customhook-collection";
+import { firebase } from "../../Firebase/FirebaseConfig";
+import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
+import JournalScreen from "../Journal/JournalScreen";
+import { PublicRoute } from "./PublicRoute";
+import { PrivateRoute } from "./PrivateRoute";
+import { Spin } from "antd";
+import "antd/dist/antd.css";
+import AuthRouter from "./AuthRouter";
 const AppRouter = () => {
+  const [checking, setCheking] = useState(true);
+  const dispatch = useDispatch();
+  const [userInfo, isOn] = useFirebaseUser(firebase);
+  useEffect(() => {
+    if (userInfo?.uid) {
+      dispatch(login(userInfo.uid, userInfo.displayName));
+    }
+    setCheking(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userInfo]);
+  if (checking) {
     return (
-        <Router>
-        <div>
-            <Switch>
-                <Route path="/auth" component={AuthRouter} />
-                <Route exact path="/" component={JournalScreen} />
-                <Redirect to="/auth/login" />
-            </Switch>
-        </div>
-        </Router>
-    )
-}
+      <div className="journal__spin">
+        <Spin size="large" />
+      </div>
+    );
+  }
+  return (
+    <Router>
+      <div>
+        <Switch>
+          <PublicRoute
+            path="/auth"
+            component={AuthRouter}
+            isAuthenticated={isOn}
+          />
 
-export default AppRouter
+          <PrivateRoute
+            exact
+            isAuthenticated={isOn}
+            path="/"
+            component={JournalScreen}
+          />
+
+          <Redirect to="/auth/login" />
+        </Switch>
+      </div>
+    </Router>
+  );
+};
+
+export default AppRouter;
