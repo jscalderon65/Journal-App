@@ -9,9 +9,9 @@ const RegisterScreen = memo(() => {
   const state = useSelector((state) => state);
   console.log(state);
   const [{ email, password,name }, onInputChange] = useForm({
-    name:"Sebastian",
-    email: "ejem@ejem.com",
-    password: "1234567890",
+    name:"",
+    email: "",
+    password: "",
   });
   const onSubmitDataUser = (e) => {
     e.preventDefault();

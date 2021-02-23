@@ -3,9 +3,11 @@ import GoogleButton from "react-google-button";
 import { Link } from "react-router-dom";
 import { useForm } from "my-customhook-collection";
 import { connect } from "react-redux";
+import {Typography} from 'antd';
 import "antd/dist/antd.css";
 import { GoogleAuth,LoginEmailPassword } from "../../Redux/Actions/auth";
 const LoginScreen = ({LoginEmailPassword, GoogleAuth, user,  isLoading}) => {
+  const {Title} = Typography;
   const [{ email, password }, onInputChange] = useForm({
     email: "",
     password: "",
@@ -20,9 +22,9 @@ const LoginScreen = ({LoginEmailPassword, GoogleAuth, user,  isLoading}) => {
   const [passwordInput, setPasswordInput] = useState(false);
   return (
     <>
-      <h3 className="auth__title text-center animate__animated animate__fadeIn">
-        Login
-      </h3>
+      <Title level={3} className="auth__title text-center animate__animated animate__fadeIn">
+      JournalApp 
+      </Title>
       <form
         className="animate__animated animate__fadeIn"
         onSubmit={handleLogin}
