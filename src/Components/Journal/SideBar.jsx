@@ -17,7 +17,6 @@ const SideBar = ({ setSideBar }) => {
       </div>
       <div className="journal__new-entry" onClick={handleAddNew}>
         <i className="far fa-calendar-plus fa-5x"></i>
-        <br />
         <p className="mt-5">New entry</p>
       </div>
       <JournalEntries />

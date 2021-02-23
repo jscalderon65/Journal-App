@@ -2,7 +2,9 @@ import React from "react";
 import { Popconfirm } from "antd";
 import { FirebaseLogOut } from "../../Redux/Actions/auth";
 import { useDispatch, useSelector } from "react-redux";
+import {Typography} from 'antd';
 const Navbar = ({ OpenMenu }) => {
+  const {Title} = Typography;
   const dispatch = useDispatch();
   const {
     auth: { name },
@@ -27,9 +29,9 @@ const Navbar = ({ OpenMenu }) => {
 
       {name && (
         <div className="journal__navbar-user-profile">
-          <h2>
+          <Title level={4} style={{color:"white"}}>
             {name} <HourIcon />
-          </h2>
+          </Title>
           <Popconfirm
             title="Do you want to log out?"
             onConfirm={handleLogout}

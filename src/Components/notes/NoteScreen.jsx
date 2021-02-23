@@ -8,8 +8,9 @@ import { activeNote } from "../../Redux/Actions/notes";
 const NoteScreen = () => {
   const dispatch = useDispatch();
   const { active: note } = useSelector((state) => state.notes);
+  const {url} = note;
   const [formValues, handleInputChange, setForm] = useForm(note);
-  const { body, title, url } = formValues;
+  const { body, title} = formValues;
   const activeId = useRef(note.id);
   useEffect(() => {
     if (note.id !== activeId.current) {

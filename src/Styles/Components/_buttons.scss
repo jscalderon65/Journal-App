@@ -49,7 +49,16 @@
         background-color: $secondary;
     }
 }
+.btn-options-picture{
+    background-color: $primary;
+    border-radius: 2px;
+    transition: background-color 0.5s;
 
+    &:hover {
+        background-color: $secondary;
+        color:white;
+    }
+}
 .close-button-container {
     text-align: right;
 }

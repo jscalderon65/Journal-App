@@ -2,6 +2,7 @@ import { types } from "../Types/Types";
 import  {startLoading,finishLoading} from './ui'
 import { firebase } from "../../Firebase/FirebaseConfig";
 import { message } from "antd";
+import {notesLogoutCleaning} from './notes'
 import "antd/dist/antd.css";
 const { success, error } = message;
 
@@ -21,7 +22,8 @@ const FirebaseLogOut = ()=>{
     return (dispatch)=>{
       firebase.auth().signOut().then(()=>{
         success("Session has ended",4);
-        dispatch(logout())
+        dispatch(logout());
+        dispatch(notesLogoutCleaning());
       }).catch((error)=>error(error,5))
     }
 }

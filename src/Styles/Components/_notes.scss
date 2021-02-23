@@ -15,6 +15,15 @@
     background-color:$primary;
     color:white;
 }
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 10px solid $primary;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
 .notes__date{
     flex:1;
     font-size:16px;
@@ -55,7 +64,7 @@ img{
     display: flex;
     justify-content: space-around;
 }
-@media(max-width:600px){
+@media(max-width:1000px){
     .notes__appbar{
         flex-direction: column;
     }
