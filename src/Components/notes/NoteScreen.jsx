@@ -30,6 +30,7 @@ const NoteScreen = () => {
           className="notes__input-title"
           autoComplete="off"
           name="title"
+          maxLength={25}
           value={title}
           onChange={handleInputChange}
         />
