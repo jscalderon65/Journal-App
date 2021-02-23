@@ -3,11 +3,14 @@ import { useDispatch } from "react-redux";
 import { login } from "../../Redux/Actions/auth";
 import { useFirebaseUser } from "my-customhook-collection";
 import { firebase } from "../../Firebase/FirebaseConfig";
+import { loadNotes } from "../../Firebase/FirebaseOperations";
+import { setNotes } from '../../Redux/Actions/notes';
 import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import JournalScreen from "../Journal/JournalScreen";
 import { PublicRoute } from "./PublicRoute";
 import { PrivateRoute } from "./PrivateRoute";
 import { Spin } from "antd";
+
 import "antd/dist/antd.css";
 import AuthRouter from "./AuthRouter";
 const AppRouter = () => {
@@ -17,6 +20,8 @@ const AppRouter = () => {
   useEffect(() => {
     if (userInfo?.uid) {
       dispatch(login(userInfo.uid, userInfo.displayName));
+      const notes = loadNotes(userInfo.uid);      
+      notes.then(note=>dispatch(setNotes(note))); 
     }
     setCheking(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps

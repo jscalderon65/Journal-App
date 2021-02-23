@@ -1,18 +1,46 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import NotesAppBar from "./NotesAppBar";
-import {Image} from "antd"
-import 'antd/dist/antd.css';
+import { useForm } from "my-customhook-collection";
+import { Image } from "antd";
+import { useSelector, useDispatch } from "react-redux";
+import "antd/dist/antd.css";
+import { activeNote } from "../../Redux/Actions/notes";
 const NoteScreen = () => {
+  const dispatch = useDispatch();
+  const { active: note } = useSelector((state) => state.notes);
+  const [formValues, handleInputChange, setForm] = useForm(note);
+  const { body, title, url } = formValues;
+  const activeId = useRef(note.id);
+  useEffect(() => {
+    if (note.id !== activeId.current) {
+      setForm(note);
+      activeId.current = note.id;
+    }
+  }, [note, setForm]);
+  useEffect(() => {
+    dispatch(activeNote(formValues.id, { ...formValues }));
+  }, [formValues, dispatch]);
   return (
     <div className="notes__main-content animate__animated animate__fadeInRight">
-      <NotesAppBar />
+      <NotesAppBar date={note.date} />
       <div className="notes_content">
-        <input type="text" placeholder="Some Awesome Title" className="notes__input-title" autoComplete="off" />
+        <input
+          type="text"
+          placeholder="Some Awesome Title"
+          className="notes__input-title"
+          autoComplete="off"
+          name="title"
+          value={title}
+          onChange={handleInputChange}
+        />
         <textarea
           placeholder="What happened today?"
           className="notes__text-area"
+          name="body"
+          value={body}
+          onChange={handleInputChange}
         ></textarea>
-        <Image  width="100px" height="100px" src="https://picsum.photos/seed/picsum/200/300" alt="image1"/>
+        {url && <Image width="100px" height="100px" src={url} alt="image1" />}
       </div>
     </div>
   );

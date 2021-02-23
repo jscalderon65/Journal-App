@@ -2,11 +2,11 @@ import React from "react";
 import { Popconfirm } from "antd";
 import { FirebaseLogOut } from "../../Redux/Actions/auth";
 import { useDispatch, useSelector } from "react-redux";
-
 const Navbar = ({ OpenMenu }) => {
   const dispatch = useDispatch();
   const {
     auth: { name },
+    
   } = useSelector((state) => state);
   const handleLogout = () => {
     dispatch(FirebaseLogOut());

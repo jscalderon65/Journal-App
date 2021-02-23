@@ -1,15 +1,15 @@
-import React from 'react'
-import JournalEntry from './JournalEntry';
-
+import React from "react";
+import JournalEntry from "./JournalEntry";
+import { useSelector } from "react-redux";
 const JournalEntries = () => {
-    const entries = [1,2,3,4,5,6,7,8,9];
-    return (
-        <div className='journal__entries'>
-            {
-                entries.map(entry=><JournalEntry key={entry}/>)
-            }
-        </div>
-    )
-}
+  const { notes } = useSelector((state) => state.notes);
+  return (
+    <div className="journal__entries">
+      {notes.map((note) => (
+        <JournalEntry key={note.id} {...note} />
+      ))}
+    </div>
+  );
+};
 
-export default JournalEntries
+export default JournalEntries;

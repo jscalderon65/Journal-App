@@ -4,7 +4,9 @@ import SideBar from "./SideBar";
 import Navbar from "./Navbar";
 import NothingSelected from "./NothingSelected";
 import NoteScreen from "../notes/NoteScreen";
+import { useSelector } from "react-redux";
 const JournalScreen = () => {
+  const { active } = useSelector((state) => state.notes);
   const [sideBar, setSideBar] = useState(true);
   const OpenMenu = () => setSideBar(!sideBar);
   return (
@@ -19,13 +21,8 @@ const JournalScreen = () => {
         <Navbar OpenMenu={OpenMenu} />
       )}
       <main className="journal__main">
-        
-                <NothingSelected />
-
-        {/*  <NoteScreen />   */}  
-      
+        {active ? <NoteScreen /> : <NothingSelected />}
       </main>
-    
     </div>
   );
 };

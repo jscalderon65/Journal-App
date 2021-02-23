@@ -1,20 +1,28 @@
 import React from "react";
-import 'antd/dist/antd.css';
+import "antd/dist/antd.css";
+import moment from "moment";
+import { activeNote } from "../../Redux/Actions/notes";
+import { useDispatch } from "react-redux";
 import { useMediaQuery } from "my-customhook-collection";
-const JournalEntry = () => {
+const JournalEntry = ({ id, date, title, body, url }) => {
+  const dispatch = useDispatch();
+  const noteDate = moment(date);
   const mediaQuery = useMediaQuery("(max-width: 1000px)");
+  const handleEntryClick = () => {
+    dispatch(activeNote(id, { date, title, body, url }));
+  };
   return (
     <div
+      onClick={handleEntryClick}
       className={
         mediaQuery === false ? "journal__entry " : "journal__entry-responsive "
       }
     >
-
-      <div
-        className="journal__entry-picture"
-      >
-        <img src="https://picsum.photos/seed/picsum/200/300" alt="image1"/>
-      </div>
+      {url && (
+        <div className="journal__entry-picture">
+          <img src={url} alt="image1" />
+        </div>
+      )}
       <div
         className={
           mediaQuery === false
@@ -22,13 +30,11 @@ const JournalEntry = () => {
             : "journal__entry-body-responsive"
         }
       >
-        <p className="journal__entry-title">
-          New Entry
-        </p>
+        <p className="journal__entry-title">{title}</p>
       </div>
       <div className="journal__entry-date-box">
-          <span>Monday</span>
-          <h4>2</h4>
+        <span>{noteDate.format("dddd")}</span>
+        <h4>{noteDate.format("Do")}</h4>
       </div>
     </div>
   );
